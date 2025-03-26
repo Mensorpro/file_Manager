@@ -1,6 +1,12 @@
 # File Management System
 
+[![Python](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
+[![Django](https://img.shields.io/badge/django-5.1+-green.svg)](https://www.djangoproject.com/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 A secure and user-friendly file management system built with Django and Tailwind CSS that allows users to upload, download, and manage their files.
+
+![Preview](docs/preview.png)
 
 ## Features
 
@@ -22,44 +28,56 @@ A secure and user-friendly file management system built with Django and Tailwind
 ## Installation
 
 1. Clone the repository:
-
 ```bash
-git clone <repository-url>
-cd <project-directory>
+git clone https://github.com/Mensorpro/file_Manager.git
+cd file_Manager
 ```
 
 2. Create and activate a virtual environment:
-
 ```bash
+# Windows
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+venv\Scripts\activate
+
+# Linux/MacOS
+python3 -m venv venv
+source venv/bin/activate
 ```
 
 3. Install dependencies:
-
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Apply database migrations:
+4. Copy the example environment file and configure it:
+```bash
+copy .env.example .env
+```
 
+5. Apply database migrations:
 ```bash
 python manage.py migrate
 ```
 
-5. Create a superuser (admin):
-
+6. Create a superuser (admin):
 ```bash
 python manage.py createsuperuser
 ```
 
-6. Run the development server:
-
+7. Run the development server:
 ```bash
 python manage.py runserver
 ```
 
 The application will be available at `http://127.0.0.1:8000/`
+
+## Quick Start
+
+After installation, you can:
+1. Access the admin interface at `/admin`
+2. Register a new user account at `/register`
+3. Login at `/login`
+4. Start managing your files at `/files`
 
 ## Configuration
 
