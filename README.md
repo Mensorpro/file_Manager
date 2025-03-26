@@ -6,8 +6,8 @@
 
 A secure and user-friendly file management system built with Django and Tailwind CSS that allows users to upload, download, and manage their files.
 
-![Preview](docs/preview1.png)
-![Preview](docs/preview2.png)
+![Preview](docs/preview_1.png)
+![Preview](docs/preview_2.png)
 
 ## Features
 
