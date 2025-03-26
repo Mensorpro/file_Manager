@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block title %}Login - File Manager{% endblock %} {% block content %}
+<div class="max-w-md mx-auto">
+  <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+      <h3 class="text-xl font-semibold text-gray-800">Login</h3>
+    </div>
+    <div class="p-6">
+      <form method="post">
+        {% csrf_token %} {% if form.errors %}
+        <div class="mb-4 p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg"><strong>Error:</strong> Please check your username and password.</div>
+        {% endif %} {% if next %} {% if user.is_authenticated %}
+        <div class="mb-4 p-4 bg-yellow-50 border border-yellow-200 text-yellow-800 rounded-lg">Your account doesn't have access to this page. Please login with an account that has access.</div>
+        {% else %}
+        <div class="mb-4 p-4 bg-blue-50 border border-blue-200 text-blue-700 rounded-lg">Please login to access this page.</div>
+        {% endif %} {% endif %}
+
+        <div class="mb-4">
+          <label for="id_username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+          <input type="text" name="username" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" id="id_username" required autofocus />
+        </div>
+
+        <div class="mb-6">
+          <label for="id_password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <input type="password" name="password" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" id="id_password" required />
+        </div>
+
+        <div class="flex flex-col space-y-3">
+          <button type="submit" class="btn-primary">Login</button>
+          <input type="hidden" name="next" value="{{ next }}" />
+          <div class="text-center text-sm text-gray-600">Don't have an account? <a href="{% url 'files:register' %}" class="text-primary-600 hover:text-primary-800">Register here</a></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

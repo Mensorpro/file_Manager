@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete File - File Manager{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h3 class="mb-0">Confirm Deletion</h3>
+            </div>
+            <div class="card-body">
+                <p class="lead">Are you sure you want to delete the following file?</p>
+                
+                <div class="file-details mb-4">
+                    <h5>{{ file.filename }}</h5>
+                    <p class="text-muted mb-0">
+                        Size: {{ file.file_size|filesizeformat }}<br>
+                        Uploaded: {{ file.upload_date|date:"M d, Y H:i" }}
+                    </p>
+                </div>
+
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    This action cannot be undone!
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-danger">Delete File</button>
+                        <a href="{% url 'files:file_list' %}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

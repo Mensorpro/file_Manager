@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block title %}Upload File - File Manager{% endblock %} {% block content %}
+<div class="max-w-3xl mx-auto">
+  <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+      <h3 class="text-xl font-semibold text-gray-800">Upload File</h3>
+    </div>
+    <div class="p-6">
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+        <h5 class="font-medium text-blue-800 mb-2">File Upload Requirements:</h5>
+        <div class="text-blue-700">
+          <div class="mb-2">Maximum file size: {{ max_size }}MB</div>
+
+          <div class="mb-1 font-medium">Allowed file types:</div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="flex items-center">
+              <i class="far fa-file-image text-blue-500 mr-2"></i>
+              <span>.jpg, .png</span>
+            </div>
+            <div class="flex items-center">
+              <i class="far fa-file-pdf text-red-500 mr-2"></i>
+              <span>.pdf</span>
+            </div>
+            <div class="flex items-center">
+              <i class="far fa-file-word text-blue-600 mr-2"></i>
+              <span>.docx</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} {% if form.errors %}
+        <div class="bg-red-50 border border-red-200 text-red-800 rounded-lg p-4 mb-6">
+          <h5 class="font-medium mb-2">Please correct the following errors:</h5>
+          {{ form.errors }}
+        </div>
+        {% endif %}
+
+        <div class="mb-6">
+          <label for="{{ form.file.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Select File</label>
+          <input type="file" name="{{ form.file.name }}" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100 {% if form.file.errors %}border border-red-500{% endif %}" id="{{ form.file.id_for_label }}" required />
+          {% if form.file.errors %}
+          <p class="mt-1 text-sm text-red-600">{{ form.file.errors }}</p>
+          {% endif %}
+        </div>
+
+        <div class="flex flex-col space-y-2">
+          <button type="submit" class="btn-primary">Upload File</button>
+          <a href="{% url 'files:file_list' %}" class="btn-secondary text-center">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
